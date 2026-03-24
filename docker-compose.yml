@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  dvwa:
+    build: .
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_USER=dvwa
+      - DB_PASSWORD=dvwa
+      - DB_NAME=dvwa
+
+  db:
+    image: mariadb:10.5
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: dvwa
+      MYSQL_USER: dvwa
+      MYSQL_PASSWORD: dvwa
